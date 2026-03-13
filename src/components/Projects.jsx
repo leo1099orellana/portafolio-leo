@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -10,7 +10,7 @@ const Tag = ({ children }) => (
   </span>
 );
 
-const ProjectCard = ({ title, type, description, image, video, demoLink, codeLink, tags }) => (
+const ProjectCard = ({ title, type, description, image, demoLink, codeLink, tags }) => (
   <div className="flex flex-col bg-[#2d3f5f] border border-slate-700 rounded-[2rem] overflow-hidden shadow-lg h-full">
     <div className="relative w-full h-48 bg-[#233554] overflow-hidden border-b border-slate-700 flex-shrink-0">
       <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover object-top" />
@@ -36,7 +36,7 @@ const ProjectCard = ({ title, type, description, image, video, demoLink, codeLin
       {(codeLink || demoLink) && (
         <div className="flex items-center justify-between pt-4 border-t border-slate-700">
           {codeLink ? (
-            <a href={codeLink} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-blue-400 font-bold text-sm flex items-center gap-2 transition-colors">
+            <a href={codeLink} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-blue-400 font-bold text-sm transition-colors">
               Código
             </a>
           ) : <div />}
@@ -58,7 +58,6 @@ const Projects = () => {
       type: "Landing Page",
       description: "Desarrollo web enfocado en la conversión para la Lic. Melanie Chaffittelli. Arquitectura de información pensada para transmitir calma y facilitar la reserva de turnos.",
       image: "/salud.jpg",
-      video: null,
       tags: ["React", "Tailwind CSS", "Responsive", "JavaScript"],
       demoLink: "https://web-psicloga.vercel.app",
       codeLink: null
@@ -68,7 +67,6 @@ const Projects = () => {
       type: "Sitio Corporativo",
       description: "Migración completa de Next.js a React + Tailwind CSS. Tabs interactivos, formulario con integración a WhatsApp y diseño responsive.",
       image: "/contador_express.jpg",
-      video: null,
       tags: ["React", "Tailwind CSS", "Swiper", "JavaScript"],
       demoLink: "https://tu-contador-express.vercel.app",
       codeLink: null
@@ -78,7 +76,6 @@ const Projects = () => {
       type: "Sitio Premium",
       description: "Sitio web premium para la consultora Marina Méndez. Estética corporativa impecable para consolidar su presencia digital y proyectar autoridad.",
       image: "/marina.jpg",
-      video: null,
       tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
       demoLink: "https://marina-mendez-r1v4.vercel.app/",
       codeLink: null
@@ -86,10 +83,13 @@ const Projects = () => {
   ];
 
   return (
-    <section id="proyectos" className="max-w-6xl mx-auto py-32 px-6">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+    <section id="proyectos" className="max-w-6xl mx-auto py-20 px-6">
+
+      <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
         <div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-200 mb-4 italic">PROYECTOS<br />DESTACADOS</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-200 mb-4 italic leading-tight">
+            PROYECTOS<br />DESTACADOS
+          </h2>
           <div className="w-20 h-1.5 bg-blue-500 rounded-full" />
         </div>
         <p className="max-w-sm text-slate-400 text-sm italic">
@@ -97,23 +97,29 @@ const Projects = () => {
         </p>
       </div>
 
-      {/* Mobile: Swiper */}
       <div className="block md:hidden">
-        <Swiper modules={[Pagination]} pagination={{ clickable: true }} spaceBetween={16} slidesPerView={1} className="pb-12">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          spaceBetween={16}
+          slidesPerView={1}
+          style={{ paddingBottom: "3rem" }}
+        >
           {projectsData.map((project, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} style={{ height: "auto" }}>
               <ProjectCard {...project} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* Desktop: Grid */}
       <div className="hidden md:grid md:grid-cols-2 gap-8">
         {projectsData.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
       </div>
+
     </section>
   );
 };
