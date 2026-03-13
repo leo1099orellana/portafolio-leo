@@ -8,7 +8,7 @@ const Tag = ({ children }) => (
 
 const ProjectCard = ({ title, type, description, image, video, demoLink, codeLink, tags }) => (
   <div className="group flex flex-col bg-[#2d3f5f] border border-slate-700 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-blue-900/20 transition-all duration-500 hover:-translate-y-2">
-    
+
     <div className="relative w-full h-56 bg-[#233554] overflow-hidden border-b border-slate-700 flex-shrink-0">
       <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ease-in-out group-hover:opacity-0" />
       {video && (
@@ -16,7 +16,7 @@ const ProjectCard = ({ title, type, description, image, video, demoLink, codeLin
       )}
       <div className="absolute inset-0 bg-blue-900/20 group-hover:bg-transparent transition-colors duration-300 z-10" />
       <div className="absolute inset-0 flex items-center justify-center -z-10">
-         <span className="text-slate-500 font-bold tracking-widest uppercase text-sm">Captura del Proyecto</span>
+        <span className="text-slate-500 font-bold tracking-widest uppercase text-sm">Captura del Proyecto</span>
       </div>
     </div>
 
@@ -46,7 +46,7 @@ const ProjectCard = ({ title, type, description, image, video, demoLink, codeLin
               Código
             </a>
           ) : <div />}
-          
+
           {demoLink && (
             <a href={demoLink} target="_blank" rel="noopener noreferrer" className="bg-blue-600/20 text-blue-400 border border-blue-500/50 hover:bg-blue-600 hover:text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md">
               Ver Proyecto
@@ -70,6 +70,16 @@ const Projects = () => {
       demoLink: "https://web-psicloga.vercel.app",
       codeLink: null
     },
+     {
+      title: "Tu Contador Express",
+      type: "Sitio Corporativo",
+      description: "Migración completa de un sitio Next.js a React + Tailwind CSS para una firma contable. Incluye carrusel de servicios con tabs interactivos, formulario de contacto con integración a WhatsApp y diseño responsive.",
+      image: "/contador_express.jpg",
+      video: null,
+      tags: ["React", "Tailwind CSS", "Swiper", "JavaScript"],
+      demoLink: "https://tu-contador-express.vercel.app",
+      codeLink: null
+    },
     {
       title: "Marca Personal Ejecutiva",
       type: "Sitio Premium",
@@ -80,6 +90,7 @@ const Projects = () => {
       demoLink: "https://marina-mendez-r1v4.vercel.app/",
       codeLink: null
     }
+   
   ];
 
   return (
